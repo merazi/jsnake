@@ -1,5 +1,7 @@
 # Snake Game
 
+<img src="img/logo.svg" style="width: 8rem"/>
+
 A simple Snake game built for learning purposes.
 
 ## Features
