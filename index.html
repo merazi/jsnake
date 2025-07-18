@@ -4,12 +4,50 @@
 <head>
     <meta charset="UTF-8" />
     <title>Snake Game</title>
+    <!-- Essential for mobile responsiveness: sets the viewport width to the device width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for D-pad buttons for better touch targets */
+        .dpad-button {
+            /* Tailwind classes for styling: background, hover effect, text color, font, padding, rounded corners, shadow, transition */
+            @apply bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-5 rounded-lg shadow-md transition-colors duration-200;
+            min-width: 60px; /* Ensures buttons are large enough for easy tapping on touchscreens */
+            min-height: 60px; /* Ensures buttons are large enough for easy tapping on touchscreens */
+            display: flex; /* Centers content within the button */
+            align-items: center; /* Centers content vertically */
+            justify-content: center; /* Centers content horizontally */
+            font-size: 1.5rem; /* Larger icons/text for better visibility on small screens */
+        }
+        .dpad-grid {
+            /* Defines a grid layout for the D-pad for precise positioning */
+            grid-template-areas:
+                ". up ."
+                "left center right"
+                ". down .";
+        }
+        .dpad-up { grid-area: up; }
+        .dpad-left { grid-area: left; }
+        .dpad-right { grid-area: right; }
+        .dpad-down { grid-area: down; }
+        .dpad-center { grid-area: center; visibility: hidden; } /* Hidden element to maintain grid structure without taking visual space */
+
+        /* Responsive Canvas Styling */
+        #game {
+            display: block; /* Removes any extra space below the canvas */
+            width: 100%; /* Makes the canvas fill the width of its parent container */
+            max-width: 400px; /* Prevents the canvas from becoming too large on wider screens, keeping original game size */
+            height: auto; /* Ensures the height scales proportionally with the width */
+            aspect-ratio: 1 / 1; /* Explicitly maintains a 1:1 aspect ratio (square) as it scales */
+        }
+    </style>
 </head>
 
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+<!-- Body uses flexbox for centering and column layout, with padding for spacing -->
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
 
-    <div class="flex flex-col items-center space-y-4">
+    <!-- Main game content container, responsive width and centered -->
+    <div class="flex flex-col items-center space-y-4 mb-8 w-full max-w-md mx-auto">
         <h1 class="text-4xl font-bold text-green-400">🐍 Snake Game</h1>
 
         <!-- Score Display -->
@@ -17,18 +55,27 @@
             Score: 0
         </div>
 
-        <!-- Canvas Container -->
-        <div class="border-4 border-green-500 rounded-md shadow-lg">
+        <!-- Canvas Container: ensures the canvas respects its max-width -->
+        <div class="border-4 border-green-500 rounded-md shadow-lg w-full max-w-[400px]">
             <canvas id="game" width="400" height="400" class="bg-gray-950"></canvas>
         </div>
 
-        <!-- Restart Button -->
-        <button id="restartBtn" class="hidden bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        <!-- Restart Button, hidden initially but takes up space to prevent layout shift -->
+        <button id="restartBtn" class="invisible bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
             🔁 Restart Game
         </button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- D-Pad Controls for Mobile: responsive width and spacing -->
+    <div class="dpad-grid grid grid-cols-3 gap-2 w-full max-w-xs sm:w-48 sm:max-w-none h-auto mt-8">
+        <button id="upBtn" class="dpad-button dpad-up">⬆️</button>
+        <button id="leftBtn" class="dpad-button dpad-left">⬅️</button>
+        <div class="dpad-center"></div>
+        <button id="rightBtn" class="dpad-button dpad-right">➡️</button>
+        <button id="downBtn" class="dpad-button dpad-down">⬇️</button>
+    </div>
+
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
