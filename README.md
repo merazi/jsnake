@@ -18,10 +18,10 @@ Pull requests are welcome! For major changes, please open an issue first.
 
 ## To-Do
 
-- [ ] Implement game start and restart functionality
-- [ ] Add scoring system
-- [ ] Handle snake collision with walls and itself
-- [ ] Add food spawning and consumption logic
+- [X] Implement game start and restart functionality
+- [X] Add scoring system
+- [X] Handle snake collision with walls and itself
+- [X] Add food spawning and consumption logic
 - [ ] Implement increasing difficulty (speed up over time)
 - [ ] Add sound effects
 - [ ] Improve mobile controls
