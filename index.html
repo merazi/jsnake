@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Snake Game</title>
-    <!-- Essential for mobile responsiveness: sets the viewport width to the device width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="manifest" href="manifest.json" />
+        <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
+        <title>Snake Game</title>
+        <!-- Essential for mobile responsiveness: sets the viewport width to the device width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
         /* Custom styles for D-pad buttons for better touch targets */
         .dpad-button {
             /* Tailwind classes for styling: background, hover effect, text color, font, padding, rounded corners, shadow, transition */
@@ -41,41 +43,48 @@
             aspect-ratio: 1 / 1; /* Explicitly maintains a 1:1 aspect ratio (square) as it scales */
         }
     </style>
-</head>
+    </head>
 
-<!-- Body uses flexbox for centering and column layout, with padding for spacing -->
-<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
+    <!-- Body uses flexbox for centering and column layout, with padding for spacing -->
+    <body
+        class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
 
-    <!-- Main game content container, responsive width and centered -->
-    <div class="flex flex-col items-center space-y-4 mb-8 w-full max-w-md mx-auto">
-        <h1 class="text-4xl font-bold text-green-400">🐍 Snake Game</h1>
+        <!-- Main game content container, responsive width and centered -->
+        <div
+            class="flex flex-col items-center space-y-2 mb-4 w-full max-w-md mx-auto">
+            <h1 class="text-4xl font-bold text-green-400">🐍 Snake Game</h1>
 
-        <!-- Score Display -->
-        <div id="score" class="text-lg font-mono bg-gray-800 px-4 py-2 rounded shadow">
-            Score: 0
+            <!-- Score Display -->
+            <div id="score"
+                class="text-lg font-mono bg-gray-800 px-4 py-2 rounded shadow">
+                Score: 0
+            </div>
+
+            <!-- Canvas Container: ensures the canvas respects its max-width -->
+            <div
+                class="border-4 border-green-500 rounded-md shadow-lg w-full max-w-[400px]">
+                <canvas id="game" width="400" height="400"
+                    class="bg-gray-950"></canvas>
+            </div>
+
+            <!-- Restart Button, hidden initially but takes up space to prevent layout shift -->
+            <button id="restartBtn"
+                class="invisible bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                🔁 Restart Game
+            </button>
         </div>
 
-        <!-- Canvas Container: ensures the canvas respects its max-width -->
-        <div class="border-4 border-green-500 rounded-md shadow-lg w-full max-w-[400px]">
-            <canvas id="game" width="400" height="400" class="bg-gray-950"></canvas>
+        <!-- D-Pad Controls for Mobile: responsive width and spacing -->
+        <div
+            class="dpad-grid grid grid-cols-3 gap-2 w-full max-w-xs sm:w-48 sm:max-w-none h-auto mt-4 bg-gray-800 p-2 rounded-lg shadow-inner">
+            <button id="upBtn" class="dpad-button dpad-up">⬆️</button>
+            <button id="leftBtn" class="dpad-button dpad-left">⬅️</button>
+            <div class="dpad-center"></div>
+            <button id="rightBtn" class="dpad-button dpad-right">➡️</button>
+            <button id="downBtn" class="dpad-button dpad-down">⬇️</button>
         </div>
 
-        <!-- Restart Button, hidden initially but takes up space to prevent layout shift -->
-        <button id="restartBtn" class="invisible bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-            🔁 Restart Game
-        </button>
-    </div>
-
-    <!-- D-Pad Controls for Mobile: responsive width and spacing -->
-    <div class="dpad-grid grid grid-cols-3 gap-2 w-full max-w-xs sm:w-48 sm:max-w-none h-auto mt-8">
-        <button id="upBtn" class="dpad-button dpad-up">⬆️</button>
-        <button id="leftBtn" class="dpad-button dpad-left">⬅️</button>
-        <div class="dpad-center"></div>
-        <button id="rightBtn" class="dpad-button dpad-right">➡️</button>
-        <button id="downBtn" class="dpad-button dpad-down">⬇️</button>
-    </div>
-
-    <script src="scripts/main.js"></script>
-</body>
+        <script src="scripts/main.js"></script>
+    </body>
 
 </html>
